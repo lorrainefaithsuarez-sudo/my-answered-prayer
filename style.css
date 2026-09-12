@@ -1,0 +1,2140 @@
+/* =========================================================
+   MASCULINE ROMANTIC BIRTHDAY WEBSITE
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: "Poppins", sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            #252936 0%,
+            #171a22 42%,
+            #0e1117 100%
+        );
+
+    color: #eee7df;
+
+    overflow-x: hidden;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+
+.hearts {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+
+.heart {
+    position: absolute;
+
+    bottom: -30px;
+
+    color: rgba(151, 61, 76, 0.22);
+
+    animation: floatHeart linear forwards;
+}
+
+
+@keyframes floatHeart {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================================
+   OPENING SCREEN
+========================================================= */
+
+.opening {
+
+    position: fixed;
+
+    inset: 0;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    z-index: 100;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #252936 0%,
+            #151820 50%,
+            #0b0e13 100%
+        );
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+}
+
+
+.opening.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+.envelope-container {
+
+    position: relative;
+
+    z-index: 5;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+
+.small-text {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 22px;
+
+    letter-spacing: 3px;
+
+    color: #c8b9aa;
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+.envelope {
+
+    position: relative;
+
+    width: 240px;
+
+    height: 155px;
+
+    margin-bottom: 30px;
+
+    cursor: pointer;
+
+    perspective: 1000px;
+}
+
+
+.envelope-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4a2029,
+            #30171e
+        );
+
+    border-radius: 5px;
+
+    border: 1px solid #74434c;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================================================
+   LETTER INSIDE ENVELOPE
+========================================================= */
+
+.envelope .letter-paper {
+
+    position: absolute;
+
+    width: 190px;
+
+    height: 125px;
+
+    left: 25px;
+
+    top: 15px;
+
+    background: #eee7df;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 28px;
+
+    color: #713744;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.35);
+
+    z-index: 2;
+
+    transition:
+        transform 1s ease,
+        box-shadow 1s ease;
+}
+
+
+/* =========================================================
+   ENVELOPE FRONT
+========================================================= */
+
+.envelope-front {
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 0;
+
+    height: 0;
+
+    border-left: 120px solid transparent;
+
+    border-right: 120px solid transparent;
+
+    border-bottom: 82px solid #5a2732;
+
+    z-index: 4;
+}
+
+
+/* =========================================================
+   ENVELOPE FLAP
+========================================================= */
+
+.envelope-flap {
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 0;
+
+    height: 0;
+
+    border-left: 120px solid transparent;
+
+    border-right: 120px solid transparent;
+
+    border-top: 85px solid #733b47;
+
+    transform-origin: top center;
+
+    transition:
+        transform 0.9s ease;
+
+    z-index: 6;
+}
+
+
+/* =========================================================
+   ENVELOPE OPEN ANIMATION
+========================================================= */
+
+.envelope.open .letter-paper {
+
+    transform:
+        translateY(-110px);
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.5);
+
+    z-index: 7;
+}
+
+
+.envelope.open .envelope-flap {
+
+    transform:
+        rotateX(180deg);
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   OPEN BUTTON
+========================================================= */
+
+#openButton {
+
+    border: 1px solid #8d5660;
+
+    background: #5b2935;
+
+    color: #f3ece5;
+
+    padding: 14px 30px;
+
+    border-radius: 30px;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35);
+
+    transition: 0.3s ease;
+}
+
+
+#openButton:hover {
+
+    background: #763b48;
+
+    border-color: #b27b84;
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 16px 35px rgba(0, 0, 0, 0.45);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+
+    min-height: 100vh;
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.main-content.show {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   BIRTHDAY HEADER
+========================================================= */
+
+.birthday-header {
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 130px 25px 80px;
+
+    text-align: center;
+}
+
+
+.eyebrow,
+.menu-label,
+.small-title {
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    letter-spacing: 4px;
+
+    color: #ad7b72;
+}
+
+
+.birthday-header h1 {
+
+    margin-top: 20px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size:
+        clamp(55px, 9vw, 105px);
+
+    line-height: 0.9;
+
+    font-weight: 500;
+
+    color: #eee7df;
+}
+
+
+.birthday-header h1 span {
+
+    font-family: "Great Vibes", cursive;
+
+    color: #b66b78;
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   DIVIDERS
+========================================================= */
+
+.divider,
+.heart-divider {
+
+    margin: 35px auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    color: #b66b78;
+}
+
+
+.divider::before,
+.divider::after,
+.heart-divider::before,
+.heart-divider::after {
+
+    content: "";
+
+    width: 70px;
+
+    height: 1px;
+
+    background: #4d4341;
+}
+
+
+.divider span,
+.heart-divider {
+
+    font-size: 22px;
+}
+
+
+.intro {
+
+    max-width: 580px;
+
+    margin: 0 auto;
+
+    font-size: 15px;
+
+    line-height: 2;
+
+    color: #aaa39e;
+}
+
+
+/* =========================================================
+   HOME MENU
+========================================================= */
+
+.home-menu {
+
+    max-width: 800px;
+
+    margin: 0 auto;
+
+    padding:
+        20px 25px 100px;
+
+    text-align: center;
+}
+
+
+.menu-label {
+
+    margin-bottom: 15px;
+}
+
+
+.home-menu h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 48px;
+
+    line-height: 0.95;
+
+    font-weight: 500;
+
+    color: #eee7df;
+
+    margin-bottom: 40px;
+}
+
+
+.home-menu h2 span {
+
+    font-family: "Great Vibes", cursive;
+
+    color: #b66b78;
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   HOME BUTTONS
+========================================================= */
+
+.home-buttons {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+}
+
+
+.home-button {
+
+    min-height: 80px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 15px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(35, 39, 49, 0.95),
+            rgba(24, 27, 35, 0.95)
+        );
+
+    border: 1px solid #373b46;
+
+    border-radius: 8px;
+
+    text-align: left;
+
+    transition: 0.3s ease;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+.home-button:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color: #70414b;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+
+.button-icon {
+
+    width: 50px;
+
+    height: 50px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #29232a;
+
+    border: 1px solid #51343b;
+
+    border-radius: 50%;
+
+    font-size: 21px;
+
+    margin-right: 16px;
+}
+
+
+.button-text {
+
+    flex: 1;
+}
+
+
+.button-text strong {
+
+    display: block;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 24px;
+
+    font-weight: 600;
+
+    color: #eee7df;
+}
+
+
+.button-text small {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: #98918e;
+
+    font-size: 11px;
+
+    letter-spacing: 0.5px;
+}
+
+
+.arrow {
+
+    font-size: 24px;
+
+    color: #b66b78;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.home-button:hover .arrow {
+
+    transform:
+        translateX(5px);
+}
+
+
+/* =========================================================
+   CENTER NEXT BUTTON
+========================================================= */
+
+.center-next {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-top: 60px;
+}
+
+
+.next-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        14px 30px;
+
+    border: 1px solid #7d4a54;
+
+    border-radius: 30px;
+
+    color: #d8b9b0;
+
+    background:
+        rgba(28, 30, 38, 0.85);
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    transition: 0.3s ease;
+}
+
+
+.next-button:hover {
+
+    background: #642f3b;
+
+    border-color: #9b626c;
+
+    color: #fff;
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+.home-next {
+
+    margin-top: 35px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    padding:
+        30px 20px 50px;
+
+    text-align: center;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 23px;
+
+    color: #a66b75;
+}
+
+
+/* =========================================================
+   INNER PAGE NAVIGATION
+========================================================= */
+
+.simple-nav {
+
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        25px 6%;
+
+    border-bottom:
+        1px solid #30343e;
+
+    background:
+        rgba(15, 17, 23, 0.92);
+
+    z-index: 10;
+}
+
+
+.nav-logo {
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    letter-spacing: 2px;
+
+    color: #d6c5bb;
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+.nav-links a {
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+
+    color: #969294;
+
+    transition: 0.3s ease;
+
+    position: relative;
+}
+
+
+.nav-links a:hover,
+.nav-links a.active {
+
+    color: #c1848d;
+}
+
+
+.nav-links a.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: -8px;
+
+    height: 1px;
+
+    background: #8e4f5a;
+}
+
+
+/* =========================================================
+   INNER PAGE COMMON
+========================================================= */
+
+.letter-page,
+.memories-page,
+.message-page {
+
+    position: relative;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding:
+        80px 25px 100px;
+
+    z-index: 2;
+}
+
+
+.page-heading {
+
+    text-align: center;
+
+    margin-bottom: 65px;
+}
+
+
+.page-heading h1 {
+
+    margin-top: 20px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size:
+        clamp(55px, 8vw, 90px);
+
+    line-height: 0.9;
+
+    font-weight: 500;
+
+    color: #eee7df;
+}
+
+
+.page-heading h1 span {
+
+    font-family: "Great Vibes", cursive;
+
+    color: #b66b78;
+
+    font-weight: 400;
+}
+
+
+.heart-divider {
+
+    margin:
+        30px auto;
+}
+
+
+.page-description {
+
+    max-width: 550px;
+
+    margin: 0 auto;
+
+    color: #a19a96;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   LETTER PAGE
+========================================================= */
+
+.letter-paper-content {
+
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    padding:
+        60px 65px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #22262f,
+            #191c24
+        );
+
+    border:
+        1px solid #373b45;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.35);
+
+    position: relative;
+}
+
+
+.letter-paper-content::before {
+
+    content: "♡";
+
+    position: absolute;
+
+    top: 25px;
+
+    right: 30px;
+
+    font-size: 30px;
+
+    color: #70424c;
+}
+
+
+.letter-greeting {
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 40px;
+
+    color: #c18189;
+
+    margin-bottom: 30px;
+}
+
+
+.letter-paper-content > p:not(.letter-greeting) {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 21px;
+
+    line-height: 1.8;
+
+    color: #d4cdc7;
+
+    margin-bottom: 25px;
+}
+
+
+.letter-signature {
+
+    margin-top: 50px;
+
+    text-align: right;
+}
+
+
+.letter-signature p {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 18px;
+
+    color: #98918e;
+
+    margin-bottom: 5px;
+}
+
+
+.letter-signature span {
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 36px;
+
+    color: #c18189;
+}
+
+
+.letter-signature div {
+
+    font-size: 18px;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   MEMORIES
+========================================================= */
+
+.memories-page {
+
+    max-width: 1100px;
+}
+
+
+.memory-item {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 70px;
+
+    align-items: center;
+
+    margin-bottom: 110px;
+}
+
+
+.memory-item.reverse {
+
+    direction: rtl;
+}
+
+
+.memory-item.reverse .memory-text {
+
+    direction: ltr;
+}
+
+
+.memory-photo {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #1c2028;
+
+    aspect-ratio: 4 / 5;
+
+    border:
+        1px solid #393d47;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+
+.memory-photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.7s ease;
+}
+
+
+.memory-photo:hover img {
+
+    transform:
+        scale(1.04);
+}
+
+
+.memory-text {
+
+    padding:
+        20px 0;
+}
+
+
+.memory-number {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 18px;
+
+    color: #a56c76;
+
+    letter-spacing: 2px;
+}
+
+
+.memory-text h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 40px;
+
+    line-height: 1;
+
+    font-weight: 500;
+
+    color: #eee7df;
+
+    margin:
+        15px 0 20px;
+}
+
+
+.memory-text p {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 20px;
+
+    line-height: 1.7;
+
+    color: #a8a09c;
+}
+
+
+/* =========================================================
+   SPECIAL MESSAGE
+========================================================= */
+
+.special-message-card {
+
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    padding:
+        65px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #22262f,
+            #191c24
+        );
+
+    border:
+        1px solid #373b45;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.35);
+
+    position: relative;
+}
+
+
+.message-heart {
+
+    font-size: 35px;
+
+    color: #b66b78;
+
+    margin-bottom: 25px;
+}
+
+
+.message-intro {
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 32px;
+
+    color: #c18189;
+
+    margin-bottom: 35px;
+}
+
+
+.message-content p {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 21px;
+
+    line-height: 1.8;
+
+    color: #d4cdc7;
+
+    margin-bottom: 25px;
+}
+
+
+.message-signature {
+
+    margin-top: 45px;
+}
+
+
+.message-signature p {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 18px;
+
+    color: #98918e;
+
+    margin-bottom: 5px;
+}
+
+
+.message-signature span {
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 36px;
+
+    color: #c18189;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .simple-nav {
+
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+
+    .nav-links {
+
+        gap: 18px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+
+    .memory-item {
+
+        gap: 35px;
+    }
+
+
+    .memory-text h2 {
+
+        font-size: 34px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+
+    /* OPENING */
+
+    .small-text {
+
+        font-size: 19px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .envelope {
+
+        transform:
+            scale(0.88);
+
+        margin-bottom: 20px;
+    }
+
+
+    #openButton {
+
+        padding:
+            13px 25px;
+
+        font-size: 11px;
+    }
+
+
+
+    /* HOME */
+
+    .birthday-header {
+
+        padding:
+            90px 20px 60px;
+    }
+
+
+    .birthday-header h1 {
+
+        font-size: 60px;
+    }
+
+
+    .intro {
+
+        font-size: 13px;
+
+        line-height: 1.8;
+    }
+
+
+    .home-menu {
+
+        padding:
+            10px 18px 70px;
+    }
+
+
+    .home-menu h2 {
+
+        font-size: 40px;
+    }
+
+
+    .home-button {
+
+        min-height: 70px;
+
+        padding:
+            12px 14px;
+    }
+
+
+    .button-icon {
+
+        width: 43px;
+
+        height: 43px;
+
+        margin-right: 12px;
+
+        font-size: 18px;
+    }
+
+
+    .button-text strong {
+
+        font-size: 21px;
+    }
+
+
+    .button-text small {
+
+        font-size: 9px;
+    }
+
+
+    .arrow {
+
+        font-size: 20px;
+    }
+
+
+
+    /* NAVIGATION */
+
+    .simple-nav {
+
+        padding:
+            20px 15px;
+    }
+
+
+    .nav-logo {
+
+        font-size: 10px;
+    }
+
+
+    .nav-links {
+
+        gap: 13px;
+    }
+
+
+    .nav-links a {
+
+        font-size: 8px;
+    }
+
+
+
+    /* INNER PAGES */
+
+    .letter-page,
+    .memories-page,
+    .message-page {
+
+        padding:
+            60px 18px 80px;
+    }
+
+
+    .page-heading {
+
+        margin-bottom: 45px;
+    }
+
+
+    .page-heading h1 {
+
+        font-size: 58px;
+    }
+
+
+    .page-description {
+
+        font-size: 12px;
+    }
+
+
+
+    /* LETTER */
+
+    .letter-paper-content {
+
+        padding:
+            45px 25px;
+    }
+
+
+    .letter-greeting {
+
+        font-size: 34px;
+    }
+
+
+    .letter-paper-content > p:not(.letter-greeting) {
+
+        font-size: 18px;
+    }
+
+
+    .letter-signature span {
+
+        font-size: 31px;
+    }
+
+
+
+    /* MEMORIES */
+
+    .memory-item,
+    .memory-item.reverse {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 30px;
+
+        margin-bottom: 75px;
+
+        direction: ltr;
+    }
+
+
+    .memory-photo {
+
+        width: 100%;
+    }
+
+
+    .memory-text {
+
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    .memory-text h2 {
+
+        font-size: 32px;
+    }
+
+
+    .memory-text p {
+
+        font-size: 18px;
+    }
+
+
+
+    /* MESSAGE */
+
+    .special-message-card {
+
+        padding:
+            45px 25px;
+    }
+
+
+    .message-intro {
+
+        font-size: 27px;
+    }
+
+
+    .message-content p {
+
+        font-size: 18px;
+    }
+
+
+    .message-signature span {
+
+        font-size: 31px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .envelope {
+
+        transform:
+            scale(0.78);
+    }
+
+
+    .birthday-header h1 {
+
+        font-size: 51px;
+    }
+
+
+    .page-heading h1 {
+
+        font-size: 51px;
+    }
+
+
+    .nav-links {
+
+        gap: 9px;
+    }
+
+
+    .nav-links a {
+
+        font-size: 7px;
+    }
+
+}
+/* =========================================================
+   SPECIAL MESSAGE - BEAUTIFUL CARD
+========================================================= */
+
+.message-page {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 25px 100px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MESSAGE CARD
+========================================================= */
+
+.special-message-card {
+    position: relative;
+
+    width: 100%;
+    max-width: 900px;
+
+    margin: 60px auto 0;
+
+    padding: 70px 85px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(42, 36, 42, 0.98),
+            rgba(25, 27, 34, 0.98)
+        );
+
+    border: 1px solid rgba(184, 117, 127, 0.28);
+
+    border-radius: 6px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    overflow: hidden;
+}
+
+
+/* Elegant inner border */
+
+.special-message-card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 14px;
+
+    border: 1px solid rgba(244, 238, 232, 0.08);
+
+    pointer-events: none;
+}
+
+
+/* Decorative top line */
+
+.special-message-card::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 120px;
+    height: 2px;
+
+    background: rgba(184, 117, 127, 0.7);
+}
+
+
+/* =========================================================
+   HEART AT TOP
+========================================================= */
+
+.message-heart {
+    position: relative;
+
+    width: 62px;
+    height: 62px;
+
+    margin: 0 auto 35px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(111, 29, 43, 0.18);
+
+    border: 1px solid rgba(184, 117, 127, 0.35);
+
+    color: #b8757f;
+
+    font-size: 24px;
+
+    box-shadow:
+        0 0 35px rgba(111, 29, 43, 0.18);
+}
+
+
+.message-heart::before,
+.message-heart::after {
+    content: "♡";
+
+    position: absolute;
+
+    color: rgba(244, 238, 232, 0.18);
+
+    font-size: 13px;
+}
+
+
+.message-heart::before {
+    top: -12px;
+    left: -18px;
+}
+
+
+.message-heart::after {
+    bottom: -10px;
+    right: -18px;
+}
+
+
+/* =========================================================
+   MESSAGE CONTENT
+========================================================= */
+
+.message-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 720px;
+
+    margin: 0 auto;
+}
+
+
+.message-content p {
+    margin: 0 0 25px;
+
+    color: rgba(244, 238, 232, 0.82);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 20px;
+
+    line-height: 1.9;
+
+    letter-spacing: 0.15px;
+}
+
+
+.message-content strong {
+    color: #f4eee8;
+
+    font-weight: 600;
+}
+
+
+.message-greeting {
+    font-family: "Great Vibes", cursive !important;
+
+    font-size: 38px !important;
+
+    color: #f4eee8 !important;
+
+    margin-bottom: 30px !important;
+}
+
+
+.message-highlight {
+    color: #e6c8ca !important;
+
+    font-size: 24px !important;
+
+    line-height: 1.7 !important;
+
+    text-align: center;
+
+    margin: 38px 0 !important;
+}
+
+
+/* =========================================================
+   SPECIAL SENTENCE
+========================================================= */
+
+.message-special {
+    position: relative;
+
+    margin: 45px auto !important;
+
+    padding: 28px 30px;
+
+    text-align: center;
+
+    color: #e6c8ca !important;
+
+    font-size: 27px !important;
+
+    line-height: 1.6 !important;
+
+    background: rgba(111, 29, 43, 0.10);
+
+    border-top: 1px solid rgba(184, 117, 127, 0.22);
+
+    border-bottom: 1px solid rgba(184, 117, 127, 0.22);
+}
+
+
+/* =========================================================
+   PRAYER BOX
+========================================================= */
+
+.prayer-box {
+    position: relative;
+
+    margin: 45px 0;
+
+    padding: 35px 40px;
+
+    background: rgba(10, 12, 17, 0.45);
+
+    border-left: 2px solid rgba(184, 117, 127, 0.55);
+
+    border-radius: 2px;
+}
+
+
+.prayer-intro {
+    margin-bottom: 18px !important;
+
+    color: rgba(244, 238, 232, 0.65) !important;
+
+    font-family: "Poppins", sans-serif !important;
+
+    font-size: 12px !important;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+
+.prayer {
+    margin: 0 !important;
+
+    color: #e6c8ca !important;
+
+    font-style: italic;
+
+    font-size: 22px !important;
+
+    line-height: 1.8 !important;
+}
+
+
+/* =========================================================
+   FINAL MESSAGE
+========================================================= */
+
+.final-message {
+    margin-top: 55px;
+
+    padding-top: 45px;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(244, 238, 232, 0.08);
+}
+
+
+.final-message p:first-child {
+    margin-bottom: 8px;
+
+    color: #f4eee8;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 42px;
+
+    line-height: 1.4;
+}
+
+
+.final-message p:nth-child(2) {
+    margin-bottom: 18px;
+
+    color: #e6c8ca;
+
+    font-size: 25px;
+}
+
+
+.final-message span {
+    display: block;
+
+    color: rgba(244, 238, 232, 0.48);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   SIGNATURE
+========================================================= */
+
+.message-signature {
+    margin-top: 55px;
+
+    text-align: center;
+}
+
+
+.message-signature p {
+    margin-bottom: 2px !important;
+
+    color: rgba(244, 238, 232, 0.55) !important;
+
+    font-family: "Poppins", sans-serif !important;
+
+    font-size: 12px !important;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+
+.message-signature span {
+    display: block;
+
+    color: #f4eee8;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: 36px;
+
+    margin-top: 5px;
+}
+
+
+.message-signature div {
+    margin-top: 8px;
+
+    color: #b8757f;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   BACK HOME BUTTON
+========================================================= */
+
+.message-page .center-next {
+    margin-top: 55px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MOBILE DESIGN
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .message-page {
+        padding: 55px 18px 80px;
+    }
+
+
+    .special-message-card {
+        padding: 55px 30px;
+
+        margin-top: 40px;
+    }
+
+
+    .special-message-card::before {
+        inset: 9px;
+    }
+
+
+    .message-heart {
+        width: 55px;
+        height: 55px;
+
+        margin-bottom: 28px;
+    }
+
+
+    .message-content p {
+        font-size: 18px;
+
+        line-height: 1.8;
+    }
+
+
+    .message-greeting {
+        font-size: 34px !important;
+    }
+
+
+    .message-highlight {
+        font-size: 21px !important;
+    }
+
+
+    .message-special {
+        font-size: 23px !important;
+
+        padding: 23px 18px;
+    }
+
+
+    .prayer-box {
+        padding: 28px 24px;
+    }
+
+
+    .prayer {
+        font-size: 19px !important;
+    }
+
+
+    .final-message p:first-child {
+        font-size: 35px;
+    }
+
+
+    .final-message p:nth-child(2) {
+        font-size: 21px;
+    }
+
+
+    .message-signature span {
+        font-size: 32px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .special-message-card {
+        padding: 50px 22px;
+    }
+
+
+    .message-content p {
+        font-size: 17px;
+
+        line-height: 1.75;
+    }
+
+
+    .message-greeting {
+        font-size: 31px !important;
+    }
+
+
+    .message-highlight {
+        font-size: 20px !important;
+    }
+
+
+    .message-special {
+        font-size: 21px !important;
+    }
+
+
+    .prayer {
+        font-size: 18px !important;
+    }
+
+
+    .final-message p:first-child {
+        font-size: 32px;
+    }
+
+}
